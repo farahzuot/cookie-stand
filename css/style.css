@@ -18,3 +18,35 @@ table tr th {
     padding: 0px 0px 22px 0px;
   
 }
+body {
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.3;
+}
+h1 {
+    font-size: 30px;
+    background-color: #ddd;
+    padding: 20px;
+}
+nav ul li {
+    float: left;
+    padding: 40px;
+}
+.img1 {
+    clear: both;
+    width: 70px;
+}
+h3 {
+    font-size: 18px;
+}
+.img5 {
+    width: 100px;
+    filter: grayscale(70%);
+    padding: 5px;
+
+}
+.img2 { 
+    width: 300px;
+    filter: grayscale(70%);
+
+}
