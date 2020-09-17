@@ -1,5 +1,6 @@
 'use strict';
 var branches = [];
+var form = document.getElementsByTagName('form')[0];
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var cookies = document.getElementById('cookies');
 var table = document.createElement('table');
@@ -85,6 +86,31 @@ function headerRow() {
 
 }
 
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
+  var location = event.target.location.value;
+  console.log(location);
+  var minHourlyCustomer =parseInt( event.target.minHourlyCustomer.value);
+  console.log(minHourlyCustomer);
+  var maxHourlyCustomer =parseInt (event.target.maxHourlyCustomer.value);
+  parseInt(maxHourlyCustomer);
+  console.log(maxHourlyCustomer);
+  var avgCookies =parseInt (event.target.avgCookies.value);
+  parseInt(avgCookies);
+  console.log(avgCookies);
+
+  var branch = new Branch(
+    location,
+    minHourlyCustomer,
+    maxHourlyCustomer,
+    avgCookies);
+
+  branch.cookiesPerHourDialy();
+  branch.render();
+  form.reset();
+});
+
+
 function footerRow () {
 
 
@@ -108,6 +134,7 @@ new Branch('Tokyo', 3, 24, 1.2);
 new Branch('Dubai', 11, 38, 3.7);
 new Branch('Paris', 20, 38, 2.3);
 new Branch('Lima', 2, 16, 4.6);
+
 
 
 (function renderTable() {
