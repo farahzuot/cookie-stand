@@ -116,7 +116,7 @@ form {
 
     background-color:rgb(245, 245, 245);
     width: 1200px;
-    height: 250px;
+    height: 280px;
     margin-left: 40px;
     font-family: 'Crushed', cursive;
 
@@ -129,22 +129,38 @@ form label {
     margin-left: 150px;
     padding: 50px;
 }
-input {
-  
-    padding: 10px 70px;
+#location {
     border: 1px solid #ddd;
-    
+    padding: 15px ;
+    width: 150px;
 }
-
+#minHourlyCustomer {
+    border: 1px solid #ddd;
+    padding: 15px ;
+    width: 150px;
+}
+#avgCookies {
+    border: 1px solid #ddd;
+    padding: 15px ;
+    width: 150px;
+}
+#maxHourlyCustomer {
+    border: 1px solid #ddd;
+    padding: 15px ;
+    width: 150px;
+}
 #submit {
     clear: both;
+    display: block;
     margin-left: 500px;
     margin-top: 20px;
-    padding: 10px 80px;
+    width: 200px;
+    height: 50px;
     background-color: greenyellow;
     color: rgba(53, 35, 11, 0.938);
     font-family: 'Crushed', cursive;
     font-size: large;
+    border: none;
 
 }
  table{
