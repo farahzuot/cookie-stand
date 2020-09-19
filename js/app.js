@@ -43,7 +43,7 @@ Branch.prototype.cookiesPerHourDialy = function () {
 
 Branch.prototype.render = function () {
 
-  this.cookiesPerHourDialy();
+
 
   var tablebody = document.createElement('tr');
   table.appendChild(tablebody);
@@ -109,28 +109,6 @@ function footerRow() {
   totOfTot.textContent = tot;
 }
 
-function newFooterRow() {
-
-  var tableFooter = document.createElement('tr');
-  table.appendChild(tableFooter);
-  var footerDataFirst = document.createElement('td');
-  tableFooter.appendChild(footerDataFirst);
-  footerDataFirst.textContent = ('New total');
-  var tot=0;
-  for (var j = 0; j < hours.length; j++) {
-    var verTot = 0;
-    for (var jj=0; jj <branches.length; jj++ ){
-      verTot += branches[jj].cookiesPerHour[j];
-    }
-    tot+= verTot;
-    var footerData = document.createElement('td');
-    tableFooter.appendChild(footerData);
-    footerData.textContent = verTot;
-  }
-  var totOfTot = document.createElement('td');
-  tableFooter.appendChild(totOfTot);
-  totOfTot.textContent = tot;
-}
 
 form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -143,12 +121,12 @@ form.addEventListener('submit', function (event) {
     minHourlyCustomer,
     maxHourlyCustomer,
     avgCookies);
-
+  var y =table.rows.length;
+  table.deleteRow(y-1);
   branch.cookiesPerHourDialy();
   branch.render();
   form.reset();
-  newFooterRow();
-
+  footerRow();
 });
 
 
@@ -163,6 +141,7 @@ new Branch('Lima', 2, 16, 4.6);
 (function renderTable() {
   headerRow();
   for (var i = 0; i < branches.length; i++) {
+    branches[i].cookiesPerHourDialy();
     branches[i].render();
   }
   footerRow();

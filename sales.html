@@ -37,14 +37,14 @@
         <h3>To Add a new Location : </h3><br>
 
         <label for="location">Location name  :</label>
-        <input type="text" id="location">
+        <input type="text" id="location" required minlength="2" maxlength="8">
         <label for="minHourlyCustomer"> Minimum Hourly Customer:</label>
-        <input type="number" id="minHourlyCustomer">
+        <input type="number" id="minHourlyCustomer" required min="1">
         <br><br>
         <label  for="avgCookies">Average cookies</label>
-        <input type="number" id="avgCookies">
+        <input type="number" id="avgCookies" required min="1">
         <label  for="maxHourlyCustomer"> Maximum Hourly Customer</label>
-        <input type="number" id="maxHourlyCustomer">
+        <input type="number" id="maxHourlyCustomer" required min="1">
         <input type="submit" id="submit">
 
         </form>
