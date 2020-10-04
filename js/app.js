@@ -1,11 +1,11 @@
 'use strict';
 var branches = [];
+
 var form = document.getElementsByTagName('form')[0];
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 var cookies = document.getElementById('cookies');
 var table = document.createElement('table');
 cookies.appendChild(table);
-
 
 
 function Branch(location, minHourlyCustomer, maxHourlyCustomer, avgCookies) {
@@ -20,7 +20,6 @@ function Branch(location, minHourlyCustomer, maxHourlyCustomer, avgCookies) {
   branches.push(this);
 
 }
-
 
 Branch.prototype.purchasedAmount = function () {
   for (var i = 0; i < hours.length; i++) {
@@ -62,6 +61,19 @@ Branch.prototype.render = function () {
 
 };
 
+if (localStorage.getItem('branches')) {
+  var branchesArray = JSON.parse(localStorage.getItem('branches'))
+  console.log(branchesArray);
+  for (let i = 0; i < branchesArray.length; i++) {
+    new Branch(
+      branchesArray[i].location,
+      branchesArray[i].minHourlyCustomer,
+      branchesArray[i].maxHourlyCustomer,
+      branchesArray[i].avgCookies
+    )
+    
+  }
+}
 
 
 function headerRow() {
@@ -93,13 +105,13 @@ function footerRow() {
   var footerDataFirst = document.createElement('td');
   tableFooter.appendChild(footerDataFirst);
   footerDataFirst.textContent = ('Total');
-  var tot=0;
+  var tot = 0;
   for (var j = 0; j < hours.length; j++) {
     var verTot = 0;
-    for (var jj=0; jj <branches.length; jj++ ){
+    for (var jj = 0; jj < branches.length; jj++) {
       verTot += branches[jj].cookiesPerHour[j];
     }
-    tot+= verTot;
+    tot += verTot;
     var footerData = document.createElement('td');
     tableFooter.appendChild(footerData);
     footerData.textContent = verTot;
@@ -121,13 +133,21 @@ form.addEventListener('submit', function (event) {
     minHourlyCustomer,
     maxHourlyCustomer,
     avgCookies);
-  var y =table.rows.length;
-  table.deleteRow(y-1);
+
+  
+  var y = table.rows.length;
+  table.deleteRow(y - 1);
   branch.cookiesPerHourDialy();
   branch.render();
   form.reset();
   footerRow();
+ 
+
+  localStorage.setItem('branches', JSON.stringify(branches))
+
+
 });
+
 
 
 new Branch('Seattle', 23, 65, 6.3);
@@ -138,8 +158,15 @@ new Branch('Lima', 2, 16, 4.6);
 
 
 
+
 (function renderTable() {
   headerRow();
+  if (branches.length > 5) {
+    for (i = 0; i < 5; i++) {
+      branches.pop()
+    }
+
+  }
   for (var i = 0; i < branches.length; i++) {
     branches[i].cookiesPerHourDialy();
     branches[i].render();
@@ -153,3 +180,4 @@ new Branch('Lima', 2, 16, 4.6);
 function getRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
