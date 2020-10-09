@@ -62,7 +62,7 @@ Branch.prototype.render = function () {
 };
 
 if (localStorage.getItem('branches')) {
-  var branchesArray = JSON.parse(localStorage.getItem('branches'))
+  var branchesArray = JSON.parse(localStorage.getItem('branches'));
   console.log(branchesArray);
   for (let i = 0; i < branchesArray.length; i++) {
     new Branch(
@@ -70,8 +70,8 @@ if (localStorage.getItem('branches')) {
       branchesArray[i].minHourlyCustomer,
       branchesArray[i].maxHourlyCustomer,
       branchesArray[i].avgCookies
-    )
-    
+    );
+
   }
 }
 
@@ -134,16 +134,16 @@ form.addEventListener('submit', function (event) {
     maxHourlyCustomer,
     avgCookies);
 
-  
+
   var y = table.rows.length;
   table.deleteRow(y - 1);
   branch.cookiesPerHourDialy();
   branch.render();
   form.reset();
   footerRow();
- 
 
-  localStorage.setItem('branches', JSON.stringify(branches))
+
+  localStorage.setItem('branches', JSON.stringify(branches));
 
 
 });
@@ -163,7 +163,7 @@ new Branch('Lima', 2, 16, 4.6);
   headerRow();
   if (branches.length > 5) {
     for (i = 0; i < 5; i++) {
-      branches.pop()
+      branches.pop();
     }
 
   }
